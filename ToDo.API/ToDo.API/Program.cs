@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Todo.Infrastructure;
 using ToDo.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTodoServices();
+builder.Services.AddDbContext<TodoDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TodoDb"));
+});
+
 
 var app = builder.Build();
 
