@@ -22,6 +22,7 @@ namespace ToDo.API.Controllers
             return await _todoService.GetTodos();
         }
 
+
         [HttpGet("id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<TodoReadDto> GetTodo([FromRoute] Guid id)
